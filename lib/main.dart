@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_components/button.dart';
 
-import 'login_page_with_validation.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  LoginForm(),
+      home:  FlutterButton(),
     );
   }
 }
