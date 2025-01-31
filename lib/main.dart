@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_components/alert_msg.dart';
 import 'package:flutter_components/button.dart';
 
 
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  FlutterButton(),
+      home:  AlertScreen(),
     );
   }
 }

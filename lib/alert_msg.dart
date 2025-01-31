@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+
 class AlertScreen extends StatelessWidget {
+  const AlertScreen({super.key});
+
   void showAlertDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -47,7 +50,8 @@ class AlertScreen extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text("Bottom Sheet Alert", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            Text("Bottom Sheet Alert",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             SizedBox(height: 10),
             Text("This is a bottom sheet alert."),
             SizedBox(height: 20),
@@ -73,32 +77,68 @@ class AlertScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Flutter Alerts")),
+      appBar: AppBar(
+          backgroundColor: Colors.purple,
+          centerTitle: true,
+          title: Text(
+            "Flutter Alerts",
+            style: TextStyle(color: Colors.white),
+          )),
       body: Padding(
         padding: EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              onPressed: () => showAlertDialog(context),
-              child: Text("Simple Alert"),
-            ),
-            SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () => showConfirmationDialog(context),
-              child: Text("Confirmation Alert"),
-            ),
-            SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () => showBottomSheet(context),
-              child: Text("Bottom Sheet Alert"),
-            ),
-            SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () => showSnackBar(context),
-              child: Text("SnackBar Alert"),
-            ),
-          ],
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: () => showAlertDialog(context),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor:
+                      Colors.purple, // Change to any color you want
+                ),
+                child: Text(
+                  "Simple Alert",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+              SizedBox(height: 30),
+              ElevatedButton(
+                onPressed: () => showConfirmationDialog(context),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor:
+                      Colors.purple, // Change to any color you want
+                ),
+                child: Text(
+                  "Confirmation Alert",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+              SizedBox(height: 30),
+              ElevatedButton(
+                onPressed: () => showBottomSheet(context),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor:
+                      Colors.purple, // Change to any color you want
+                ),
+                child: Text(
+                  "Bottom Sheet Alert",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+              SizedBox(height: 30),
+              ElevatedButton(
+                onPressed: () => showSnackBar(context),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor:
+                      Colors.purple, // Change to any color you want
+                ),
+                child: Text(
+                  "SnackBar Alert",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
