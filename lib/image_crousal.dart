@@ -49,7 +49,7 @@ class _ImageCarouselState extends State<ImageCarousel> {
                 );
               }).toList(),
               options: CarouselOptions(
-                height: 400.0,
+                height: 460.0,
                 enlargeCenterPage: true,
                 autoPlay: true,
                 aspectRatio: 16 / 9,
