@@ -35,6 +35,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   form_field_validator: ^1.1.0
+  curved_navigation_bar: 
   carousel_slider:
 
 dev_dependencies:
