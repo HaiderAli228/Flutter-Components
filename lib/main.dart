@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_components/alert_msg.dart';
-import 'package:flutter_components/button.dart';
-import 'package:flutter_components/image_crousal.dart';
+import 'package:flutter_components/parallex_swipe.dart';
 
 
 void main() {
@@ -20,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  AlertScreen(),
+      home:  ParallaxCardSwipe(),
     );
   }
 }
