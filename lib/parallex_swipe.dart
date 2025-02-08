@@ -14,28 +14,46 @@ class _ParallaxCardSwipeState extends State<ParallaxCardSwipe> {
   List<Map<String, String>> items = [
     {
       'image':
-      'https://images.pexels.com/photos/1076758/pexels-photo-1076758.jpeg?auto=compress&cs=tinysrgb&w=600',
+      "https://images.pexels.com/photos/19797384/pexels-photo-19797384/free-photo-of-beautiful-model-in-oregon-wearing-a-forest-green-linen-dress-portrait-taken-by-portland-photographer-lance-reis-on-my-sonya7iii-on-location.jpeg?auto=compress&cs=tinysrgb&w=600",
       'title': 'Beautiful Sunset',
       'description': 'Enjoy the mesmerizing view of the golden sunset over the horizon, creating a breathtaking scene of warmth and peace.'
     },
     {
       'image':
-      'https://images.pexels.com/photos/36729/tulip-flower-bloom-pink.jpg?auto=compress&cs=tinysrgb&w=600',
+      'https://images.pexels.com/photos/3131809/pexels-photo-3131809.jpeg?auto=compress&cs=tinysrgb&w=600',
       'title': 'Lovely Tulips',
       'description': 'The elegance of fresh tulips blooming in the garden, adding vibrant colors and beauty to nature.'
     },
     {
       'image':
-      'https://images.pexels.com/photos/459335/pexels-photo-459335.jpeg?auto=compress&cs=tinysrgb&w=600',
+      'https://images.pexels.com/photos/12472944/pexels-photo-12472944.jpeg?auto=compress&cs=tinysrgb&w=600',
       'title': 'Starry Night',
       'description': 'Gaze into the vast beauty of a starry night sky, filled with shimmering stars and deep mysteries of the universe.'
     },
     {
       'image':
-      'https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?auto=compress&cs=tinysrgb&w=600',
+      'https://images.pexels.com/photos/17307290/pexels-photo-17307290/free-photo-of-model-in-the-forest.jpeg?auto=compress&cs=tinysrgb&w=600',
+      'title': 'Haider Ali',
+      'description': 'A peaceful getaway into the mountains, where the fresh air and scenic views offer a perfect retreat from city life.'
+    },
+    {
+      'image':
+      'https://images.pexels.com/photos/19797390/pexels-photo-19797390/free-photo-of-beautiful-model-in-oregon-wearing-a-forest-green-linen-dress-portrait-taken-by-portland-photographer-lance-reis-on-my-sonya7iii-on-location.jpeg?auto=compress&cs=tinysrgb&w=600',
       'title': 'Mountain Escape',
       'description': 'A peaceful getaway into the mountains, where the fresh air and scenic views offer a perfect retreat from city life.'
-    }
+    },
+    {
+      'image':
+      'https://images.pexels.com/photos/1852300/pexels-photo-1852300.jpeg?auto=compress&cs=tinysrgb&w=600',
+      'title': 'Escape Mountain AA',
+      'description': 'A peaceful getaway into the mountains, where the fresh air and scenic views offer a perfect retreat from city life.'
+    },
+    {
+      'image':
+      "https://images.pexels.com/photos/831477/pexels-photo-831477.jpeg?auto=compress&cs=tinysrgb&w=600",
+      'title': 'Beautiful Sunset',
+      'description': 'Enjoy the mesmerizing view of the golden sunset over the horizon, creating a breathtaking scene of warmth and peace.'
+    },
   ];
 
   @override
@@ -88,7 +106,7 @@ class _ParallaxCardSwipeState extends State<ParallaxCardSwipe> {
                       ),
                     ),
                     Positioned(
-                      bottom: -50,
+                      bottom: 100,
                       left: 20,
                       right: 20,
                       child: AnimatedOpacity(
@@ -99,28 +117,35 @@ class _ParallaxCardSwipeState extends State<ParallaxCardSwipe> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             AnimatedSlide(
-                              offset: currentIndex == index ? Offset(0, 0) : Offset(0, 0.5),
-                              duration: Duration(milliseconds: 600),
+                              offset: currentIndex == index ? Offset(0, 0) : Offset(0, -0.5),
+                              duration: Duration(milliseconds: 700),
                               curve: Curves.easeInOut,
                               child: Text(
                                 items[index]['title']!,
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 24,
+                                  fontSize: 26,
                                   fontWeight: FontWeight.bold,
+                                  shadows: [
+                                    Shadow(
+                                      color: Colors.black54,
+                                      blurRadius: 5,
+                                    )
+                                  ],
                                 ),
                               ),
                             ),
                             SizedBox(height: 8),
                             AnimatedSlide(
-                              offset: currentIndex == index ? Offset(0, 0) : Offset(0, 0.5),
-                              duration: Duration(milliseconds: 600),
+                              offset: currentIndex == index ? Offset(0, 0) : Offset(0, -0.5),
+                              duration: Duration(milliseconds: 700),
                               curve: Curves.easeInOut,
                               child: Text(
                                 items[index]['description']!,
                                 style: TextStyle(
                                   color: Colors.white70,
                                   fontSize: 18,
+                                  height: 1.5,
                                 ),
                               ),
                             ),
