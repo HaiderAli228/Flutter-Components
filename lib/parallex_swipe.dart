@@ -7,118 +7,132 @@ class ParallaxCardSwipe extends StatefulWidget {
   _ParallaxCardSwipeState createState() => _ParallaxCardSwipeState();
 }
 
-class _ParallaxCardSwipeState extends State<ParallaxCardSwipe>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  Offset _dragOffset = Offset.zero;
-  double _rotation = 0.0;
-  List<String> images = [
-    'https://images.pexels.com/photos/1076758/pexels-photo-1076758.jpeg?auto=compress&cs=tinysrgb&w=600',
-    'https://images.pexels.com/photos/36729/tulip-flower-bloom-pink.jpg?auto=compress&cs=tinysrgb&w=600',
-    'https://images.pexels.com/photos/459335/pexels-photo-459335.jpeg?auto=compress&cs=tinysrgb&w=600'
-  ];
+class _ParallaxCardSwipeState extends State<ParallaxCardSwipe> {
+  PageController _pageController = PageController(viewportFraction: 0.9);
   int currentIndex = 0;
 
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: Duration(milliseconds: 300),
-    );
-  }
-
-  void _onDragUpdate(DragUpdateDetails details) {
-    setState(() {
-      _dragOffset += details.delta;
-      _rotation = _dragOffset.dx / 300;
-    });
-  }
-
-  void _onDragEnd(DragEndDetails details) {
-    final velocity = details.velocity.pixelsPerSecond.dx;
-    if (velocity.abs() > 500 || _dragOffset.dx.abs() > 100) {
-      _swipeCard(velocity > 0 ? 1 : -1);
-    } else {
-      setState(() {
-        _dragOffset = Offset.zero;
-        _rotation = 0;
-      });
+  List<Map<String, String>> items = [
+    {
+      'image':
+      'https://images.pexels.com/photos/1076758/pexels-photo-1076758.jpeg?auto=compress&cs=tinysrgb&w=600',
+      'title': 'Beautiful Sunset',
+      'description': 'Enjoy the mesmerizing view of the golden sunset over the horizon, creating a breathtaking scene of warmth and peace.'
+    },
+    {
+      'image':
+      'https://images.pexels.com/photos/36729/tulip-flower-bloom-pink.jpg?auto=compress&cs=tinysrgb&w=600',
+      'title': 'Lovely Tulips',
+      'description': 'The elegance of fresh tulips blooming in the garden, adding vibrant colors and beauty to nature.'
+    },
+    {
+      'image':
+      'https://images.pexels.com/photos/459335/pexels-photo-459335.jpeg?auto=compress&cs=tinysrgb&w=600',
+      'title': 'Starry Night',
+      'description': 'Gaze into the vast beauty of a starry night sky, filled with shimmering stars and deep mysteries of the universe.'
+    },
+    {
+      'image':
+      'https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?auto=compress&cs=tinysrgb&w=600',
+      'title': 'Mountain Escape',
+      'description': 'A peaceful getaway into the mountains, where the fresh air and scenic views offer a perfect retreat from city life.'
     }
-  }
-
-  void _swipeCard(int direction) {
-    setState(() {
-      _dragOffset = Offset(direction * 500, 0);
-    });
-    Future.delayed(Duration(milliseconds: 300), () {
-      setState(() {
-        currentIndex = (currentIndex + 1) % images.length;
-        _dragOffset = Offset.zero;
-        _rotation = 0;
-      });
-    });
-  }
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Center(
-        child: GestureDetector(
-          onPanUpdate: _onDragUpdate,
-          onPanEnd: _onDragEnd,
-          child: Transform(
-            alignment: Alignment.center,
-            transform: Matrix4.identity()
-              ..translate(_dragOffset.dx, _dragOffset.dy, 0)
-              ..rotateZ(_rotation),
-            child: Stack(
-              children: images.reversed.toList().asMap().entries.map((entry) {
-                int index = entry.key;
-                String imageUrl = entry.value;
-                bool isFront = index == currentIndex;
-
-                return Positioned.fill(
-                  child: AnimatedOpacity(
-                    duration: Duration(milliseconds: 300),
-                    opacity: isFront ? 1 : 0,
-                    child: CardWidget(imageUrl: imageUrl, isFront: isFront),
-                  ),
-                );
-              }).toList(),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class CardWidget extends StatelessWidget {
-  final String imageUrl;
-  final bool isFront;
-
-  const CardWidget({required this.imageUrl, required this.isFront});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black26,
-            blurRadius: 20,
-            spreadRadius: 5,
-            offset: Offset(0, 10),
-          )
-        ],
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
-        child: Image.network(
-          imageUrl,
-          fit: BoxFit.cover,
+        child: PageView.builder(
+          controller: _pageController,
+          itemCount: items.length,
+          onPageChanged: (index) {
+            setState(() => currentIndex = index);
+          },
+          itemBuilder: (context, index) {
+            return AnimatedContainer(
+              duration: Duration(milliseconds: 400),
+              curve: Curves.easeInOut,
+              margin: EdgeInsets.zero,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black45,
+                    blurRadius: 15,
+                    spreadRadius: 5,
+                    offset: Offset(0, 8),
+                  )
+                ],
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Stack(
+                  children: [
+                    Image.network(
+                      items[index]['image']!,
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                      height: double.infinity,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            Colors.transparent,
+                            Colors.black.withOpacity(0.7),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: -50,
+                      left: 20,
+                      right: 20,
+                      child: AnimatedOpacity(
+                        opacity: currentIndex == index ? 1.0 : 0.0,
+                        duration: Duration(milliseconds: 600),
+                        curve: Curves.easeInOut,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            AnimatedSlide(
+                              offset: currentIndex == index ? Offset(0, 0) : Offset(0, 0.5),
+                              duration: Duration(milliseconds: 600),
+                              curve: Curves.easeInOut,
+                              child: Text(
+                                items[index]['title']!,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 8),
+                            AnimatedSlide(
+                              offset: currentIndex == index ? Offset(0, 0) : Offset(0, 0.5),
+                              duration: Duration(milliseconds: 600),
+                              curve: Curves.easeInOut,
+                              child: Text(
+                                items[index]['description']!,
+                                style: TextStyle(
+                                  color: Colors.white70,
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
         ),
       ),
     );
