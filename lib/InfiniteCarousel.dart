@@ -47,7 +47,6 @@ class _InfiniteCarouselState extends State<InfiniteCarousel> {
             });
           },
           itemBuilder: (context, index) {
-            double scale = currentPage == index ? 1.0 : 0.85;
             return AnimatedBuilder(
               animation: _pageController,
               builder: (context, child) {
