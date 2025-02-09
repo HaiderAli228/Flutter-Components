@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_components/parallex_swipe.dart';
+import 'package:flutter_components/InfiniteCarousel.dart';
 
 
 void main() {
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  ParallaxCardSwipe(),
+      home:  InfiniteCarousel(),
     );
   }
 }
