@@ -5,10 +5,10 @@ class InfiniteCarousel extends StatefulWidget {
   const InfiniteCarousel({super.key});
 
   @override
-  _InfiniteCarouselState createState() => _InfiniteCarouselState();
+  InfiniteCarouselState createState() => InfiniteCarouselState();
 }
 
-class _InfiniteCarouselState extends State<InfiniteCarousel> {
+class InfiniteCarouselState extends State<InfiniteCarousel> {
   final PageController _pageController =
   PageController(viewportFraction: 0.85); // Adjusted for a better look
   int currentPage = 0;
