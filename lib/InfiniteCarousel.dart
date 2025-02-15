@@ -9,6 +9,7 @@ class InfiniteCarousel extends StatefulWidget {
 }
 
 class InfiniteCarouselState extends State<InfiniteCarousel> {
+
   final PageController _pageController =
   PageController(viewportFraction: 0.85); // Adjusted for a better look
   int currentPage = 0;
