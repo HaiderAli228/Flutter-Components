@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_components/InfiniteCarousel.dart';
-import 'package:flutter_components/practical.dart';
-import 'package:flutter_components/s1.dart';
 
 
 void main() {
@@ -20,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  Practical(),
+      home: InfiniteCarousel(),
     );
   }
 }
