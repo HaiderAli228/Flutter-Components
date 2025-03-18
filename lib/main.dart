@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_components/InfiniteCarousel.dart';
+import 'package:flutter_components/screen_time.dart';
 
 
 void main() {
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: InfiniteCarousel(),
+      home: ScreenTimeAnalyticsScreen(),
     );
   }
 }
