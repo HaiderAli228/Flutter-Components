@@ -38,6 +38,8 @@ dependencies:
   curved_navigation_bar: 
   carousel_slider:
   fl_chart:
+  pin_code_fields:
+  fluttertoast:
 
 dev_dependencies:
   flutter_test:
